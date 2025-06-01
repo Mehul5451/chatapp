@@ -3,7 +3,7 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import '../src/CSS/home.css';
 
-const socket = io("https://mchatapp.vercel.app");
+const socket = io("https://chatappbackend-nntq.onrender.com");
 
 export const Home = () => {
   const [users, setUsers] = useState([]);
@@ -20,7 +20,7 @@ export const Home = () => {
         const token = localStorage.getItem("token");
         if (!token) return console.error("No token found");
 
-        const res = await axios.get("https://mchatapp.vercel.app/getuser", {
+        const res = await axios.get("https://chatappbackend-nntq.onrender.com/getuser", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -66,7 +66,7 @@ export const Home = () => {
     const currentUserId = JSON.parse(atob(token.split('.')[1])).id;
 
     try {
-      const res = await axios.get(`https://mchatapp.vercel.app/messages/${currentUserId}/${user._id}`);
+      const res = await axios.get(`https://chatappbackend-nntq.onrender.com/messages/${currentUserId}/${user._id}`);
       const formattedMessages = res.data.map(msg => ({
         from: msg.senderId === currentUserId ? 'me' : msg.senderId,
         text: msg.message,
@@ -132,7 +132,7 @@ export const Home = () => {
 
      try {
        // Call the delete endpoint
-       await axios.delete(`https://mchatapp.vercel.app/messages/${msgId}`);
+       await axios.delete(`https://chatappbackend-nntq.onrender.com/messages/${msgId}`);
 
        // Update local state
        setMessages(prev => ({
