@@ -21,21 +21,21 @@ export const Signup = () => {
     }));
   };
 
-  const handlesubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("https://chatappbackend-nntq.onrender.com/submit", user);
-      console.log("Data sent to backend:", response.data);
-      alert("Signup successful!");
-      navigate("/login");
-    } catch (error) {
-      if (error.response) {
-        alert(error.response.data);
-      } else {
-        alert("Signup failed. Check console.");
-      }
+ const handlesubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post("https://chatappbackend-nntq.onrender.com/submit", user);
+    alert("Signup successful!");
+    navigate("/login");
+  } catch (error) {
+    if (!error.response) {
+      alert("Backend might be waking up, please retry in a few seconds.");
+    } else {
+      alert(error.response.data || "Signup failed.");
     }
-  };
+  }
+};
+
 
   return (
     <div className="chatbox-container">
