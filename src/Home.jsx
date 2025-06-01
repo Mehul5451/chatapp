@@ -3,7 +3,11 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import '../src/CSS/home.css';
 
-const socket = io("https://chatappbackend-nntq.onrender.com");
+const socket = io("https://chatappbackend-nntq.onrender.com", {
+  transports: ["websocket"],
+  secure: true,
+});
+
 
 export const Home = () => {
   const [users, setUsers] = useState([]);
