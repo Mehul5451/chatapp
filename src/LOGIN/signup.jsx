@@ -24,7 +24,7 @@ export const Signup = () => {
   const handlesubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/submit", user);
+      const response = await axios.post("https://chatappbackend-nntq.onrender.com/submit", user);
       console.log("Data sent to backend:", response.data);
       alert("Signup successful!");
       navigate("/login");

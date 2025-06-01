@@ -23,7 +23,7 @@ export const Login = () => {
   const handlelogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/login", user);
+      const response = await axios.post("https://chatappbackend-nntq.onrender.com/login", user);
       localStorage.setItem("token", response.data.token);
       alert("Login successful!");
       navigate("/");
