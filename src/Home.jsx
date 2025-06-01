@@ -3,7 +3,7 @@ import axios from 'axios';
 import io from 'socket.io-client';
 import '../src/CSS/home.css';
 
-const socket = io("http://localhost:3000");
+const socket = io("https://mchatapp.vercel.app");
 
 export const Home = () => {
   const [users, setUsers] = useState([]);
@@ -20,7 +20,7 @@ export const Home = () => {
         const token = localStorage.getItem("token");
         if (!token) return console.error("No token found");
 
-        const res = await axios.get("http://localhost:3000/getuser", {
+        const res = await axios.get("https://mchatapp.vercel.app/getuser", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -66,7 +66,7 @@ export const Home = () => {
     const currentUserId = JSON.parse(atob(token.split('.')[1])).id;
 
     try {
-      const res = await axios.get(`http://localhost:3000/messages/${currentUserId}/${user._id}`);
+      const res = await axios.get(`https://mchatapp.vercel.app/messages/${currentUserId}/${user._id}`);
       const formattedMessages = res.data.map(msg => ({
         from: msg.senderId === currentUserId ? 'me' : msg.senderId,
         text: msg.message,
@@ -132,7 +132,7 @@ export const Home = () => {
 
      try {
        // Call the delete endpoint
-       await axios.delete(`http://localhost:3000/messages/${msgId}`);
+       await axios.delete(`https://mchatapp.vercel.app/messages/${msgId}`);
 
        // Update local state
        setMessages(prev => ({
